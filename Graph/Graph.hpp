@@ -32,17 +32,4 @@ struct Graph
         eg.rev = g[eg.v = b].size() - 1;
         g[e].push_back(eg);
     }
-
-    void write()
-    {
-        for(unsigned x = 0; x < g.size(); ++x)
-        {
-            std::cout << x << ":";
-
-            for(const auto& v : g[x])
-                std::cout << " " << v.v;
-
-            std::cout << std::endl;
-        }
-    }
 };

@@ -1,4 +1,5 @@
 #include "Graph.hpp"
+#include "GraphWriter.hpp"
 
 struct Empty { };
 
@@ -29,7 +30,7 @@ int main()
         graph.edgeDirected(edgeStart, edgeEnd);
     }
 
-    graph.write();
+    writeGraph(graph);
 
     return 0;
 }
