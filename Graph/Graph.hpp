@@ -32,4 +32,33 @@ struct Graph
         eg.rev = g[eg.v = b].size() - 1;
         g[e].push_back(eg);
     }
+
+    void bfs(int s)
+    {
+        for(auto& v : g)
+            v.t = v.s = -1;
+
+        g[s].t = 0;
+
+        int qu[g.size()];
+        int b;
+        int e;
+
+        qu[b = e = 0] = s;
+
+        while(b <= e)
+        {
+            s = qu[b++];
+
+            for(const auto& v : g[s])
+            {
+                if(g[v.v].t == -1)
+                {
+                    g[qu[++e] = v.v].t = g[s].t + 1;
+                    g[v.v].s = s;
+                }
+            }
+        }
+    }
+
 };
