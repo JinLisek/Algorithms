@@ -1,2 +1,2 @@
-add_subdirectory(bubblesort)
+add_subdirectory(BubbleSort)
 add_subdirectory(tests)

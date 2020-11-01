@@ -14,4 +14,4 @@ if(NOT googletest_POPULATED)
 endif()
 
 add_executable(SortingAlgorithmsTests SortingAlgorithmsTests.cpp)
-target_link_libraries(SortingAlgorithmsTests gtest gmock gtest_main)
+target_link_libraries(SortingAlgorithmsTests gtest gmock gtest_main BubbleSort)
