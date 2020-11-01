@@ -21,6 +21,9 @@ void swap(TypeToSort &first, TypeToSort &second)
 
 void bubbleSort(std::vector<TypeToSort> &collection)
 {
+    if (collection.empty())
+        return;
+
     for (std::size_t lastIndexToCheck = collection.size() - 1; lastIndexToCheck > 0; --lastIndexToCheck)
         for (std::size_t index = 0; index < lastIndexToCheck; ++index)
             if (collection[index] > collection[index + 1])
