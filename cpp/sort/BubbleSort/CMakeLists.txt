@@ -1,2 +1,2 @@
-add_library(BubbleSort BubbleSort.cpp)
-target_include_directories(BubbleSort PUBLIC include)
+add_library(BubbleSort INTERFACE)
+target_include_directories(BubbleSort INTERFACE include)
