@@ -52,3 +52,20 @@ void optimizedBubbleSort(std::vector<TypeToSort> &collection)
             break;
     }
 }
+
+void selectionSort(std::vector<TypeToSort> &collection)
+{
+    if (collection.empty())
+        return;
+
+    for (auto index = 0u; index < collection.size() - 1; ++index)
+    {
+        auto minIndex = index;
+        for (auto nextIndex = index + 1; nextIndex < collection.size(); ++nextIndex)
+        {
+            if (collection.at(nextIndex) < collection.at(minIndex))
+                minIndex = nextIndex;
+        }
+        swap(collection.at(index), collection.at(minIndex));
+    }
+}
