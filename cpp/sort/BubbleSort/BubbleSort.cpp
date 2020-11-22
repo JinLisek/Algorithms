@@ -29,3 +29,26 @@ void bubbleSort(std::vector<TypeToSort> &collection)
             if (collection[index] > collection[index + 1])
                 swap(collection[index], collection[index + 1]);
 }
+
+void optimizedBubbleSort(std::vector<TypeToSort> &collection)
+{
+    if (collection.empty())
+        return;
+
+    bool didSwap = false;
+
+    for (std::size_t lastIndexToCheck = collection.size() - 1; lastIndexToCheck > 0; --lastIndexToCheck)
+    {
+        for (std::size_t index = 0; index < lastIndexToCheck; ++index)
+        {
+            if (collection[index] > collection[index + 1])
+            {
+                swap(collection[index], collection[index + 1]);
+                didSwap = true;
+            }
+        }
+
+        if (not didSwap)
+            break;
+    }
+}

@@ -2,37 +2,53 @@
 #include "gmock/gmock.h"
 
 #include <vector>
+#include <functional>
 
 #include "BubbleSort.hpp"
 
-TEST(SortingAlgorithmsTests, GivenEmptyCollectionThenShouldReturnEmptyCollection)
+using AlgorithmInput = std::vector<TypeToSort>;
+using Algorithm = std::function<void(AlgorithmInput &)>;
+
+class SortingAlgorithmsParametrizedTestFixture : public testing::TestWithParam<Algorithm>
+{
+public:
+    SortingAlgorithmsParametrizedTestFixture() : sortingAlgorithm{GetParam()}
+    {
+    }
+
+    Algorithm sortingAlgorithm;
+};
+
+TEST_P(SortingAlgorithmsParametrizedTestFixture, GivenEmptyCollectionThenShouldReturnEmptyCollection)
 {
     std::vector<std::int64_t> testedInput{};
-    bubbleSort(testedInput);
+    sortingAlgorithm(testedInput);
 
     ASSERT_THAT(testedInput, testing::IsEmpty());
 }
 
-TEST(SortingAlgorithmsTests, GivenCollectionWithSingleElementThenShouldReturnCollectionWithThatElement)
+TEST_P(SortingAlgorithmsParametrizedTestFixture, GivenCollectionWithSingleElementThenShouldReturnCollectionWithThatElement)
 {
     std::vector<std::int64_t> testedInput{8};
-    bubbleSort(testedInput);
+    sortingAlgorithm(testedInput);
 
     ASSERT_THAT(testedInput, testing::ElementsAre(8));
 }
 
-TEST(SortingAlgorithmsTests, GivenCollectionWithTwoSortedElementsThenShouldReturnUnchangedCollection)
+TEST_P(SortingAlgorithmsParametrizedTestFixture, GivenCollectionWithTwoSortedElementsThenShouldReturnUnchangedCollection)
 {
     std::vector<std::int64_t> testedInput{7, 8};
-    bubbleSort(testedInput);
+    sortingAlgorithm(testedInput);
 
     ASSERT_THAT(testedInput, testing::ElementsAre(7, 8));
 }
 
-TEST(SortingAlgorithmsTests, GivenCollectionWithTwoUnsortedElementsThenShouldReturnCollectionWithChangedOrder)
+TEST_P(SortingAlgorithmsParametrizedTestFixture, GivenCollectionWithTwoUnsortedElementsThenShouldReturnCollectionWithChangedOrder)
 {
     std::vector<std::int64_t> testedInput{8, 7};
-    bubbleSort(testedInput);
+    sortingAlgorithm(testedInput);
 
     ASSERT_THAT(testedInput, testing::ElementsAre(7, 8));
 }
+
+INSTANTIATE_TEST_CASE_P(SortingAlgorithmsTests, SortingAlgorithmsParametrizedTestFixture, testing::Values(bubbleSort, optimizedBubbleSort));
