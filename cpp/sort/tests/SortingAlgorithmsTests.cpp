@@ -6,6 +6,7 @@
 
 #include "BubbleSort.hpp"
 
+using TypeToSort = std::int64_t;
 using AlgorithmInput = std::vector<TypeToSort>;
 using Algorithm = std::function<void(AlgorithmInput &)>;
 
@@ -21,7 +22,7 @@ public:
 
 TEST_P(SortingAlgorithmsParametrizedTestFixture, GivenEmptyCollectionThenShouldReturnEmptyCollection)
 {
-    std::vector<std::int64_t> testedInput{};
+    std::vector<TypeToSort> testedInput{};
     sortingAlgorithm(testedInput);
 
     ASSERT_THAT(testedInput, testing::IsEmpty());
@@ -51,4 +52,11 @@ TEST_P(SortingAlgorithmsParametrizedTestFixture, GivenCollectionWithTwoUnsortedE
     ASSERT_THAT(testedInput, testing::ElementsAre(7, 8));
 }
 
-INSTANTIATE_TEST_CASE_P(SortingAlgorithmsTests, SortingAlgorithmsParametrizedTestFixture, testing::Values(bubbleSort, optimizedBubbleSort, selectionSort, insertionSort));
+INSTANTIATE_TEST_CASE_P(
+    SortingAlgorithmsTests,
+    SortingAlgorithmsParametrizedTestFixture,
+    testing::Values(
+        bubbleSort<TypeToSort>,
+        optimizedBubbleSort<TypeToSort>,
+        selectionSort<TypeToSort>,
+        insertionSort<TypeToSort>));
