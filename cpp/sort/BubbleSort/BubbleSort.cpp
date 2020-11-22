@@ -69,3 +69,18 @@ void selectionSort(std::vector<TypeToSort> &collection)
         swap(collection.at(index), collection.at(minIndex));
     }
 }
+
+void insertionSort(std::vector<TypeToSort> &collection)
+{
+    for (auto index = 1u; index < collection.size(); ++index)
+    {
+        const auto currentValue = collection.at(index);
+        int previousIndex = index - 1; // cannot be unsigned, because it goes -1 after previousIndex == 0
+        while (previousIndex >= 0 and currentValue < collection.at(previousIndex))
+        {
+            collection.at(previousIndex + 1) = collection.at(previousIndex);
+            --previousIndex;
+        }
+        collection.at(previousIndex + 1) = currentValue;
+    }
+}

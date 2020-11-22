@@ -12,3 +12,5 @@ void bubbleSort(std::vector<TypeToSort> &collection);
 void optimizedBubbleSort(std::vector<TypeToSort> &collection);
 
 void selectionSort(std::vector<TypeToSort> &collection);
+
+void insertionSort(std::vector<TypeToSort> &collection);

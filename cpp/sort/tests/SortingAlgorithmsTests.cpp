@@ -51,4 +51,4 @@ TEST_P(SortingAlgorithmsParametrizedTestFixture, GivenCollectionWithTwoUnsortedE
     ASSERT_THAT(testedInput, testing::ElementsAre(7, 8));
 }
 
-INSTANTIATE_TEST_CASE_P(SortingAlgorithmsTests, SortingAlgorithmsParametrizedTestFixture, testing::Values(bubbleSort, optimizedBubbleSort, selectionSort));
+INSTANTIATE_TEST_CASE_P(SortingAlgorithmsTests, SortingAlgorithmsParametrizedTestFixture, testing::Values(bubbleSort, optimizedBubbleSort, selectionSort, insertionSort));
